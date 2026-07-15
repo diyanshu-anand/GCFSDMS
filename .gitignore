@@ -1,0 +1,14 @@
+# Secret Environment Variables
+.env
+
+# Composer Dependencies (Docker installs these inside the container)
+src/vendor/
+vendor/
+
+# Docker Database Volumes (If you ever map local folders for DB storage)
+mysql/
+db_data/
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
