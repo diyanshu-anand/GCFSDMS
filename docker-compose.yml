@@ -1,0 +1,32 @@
+
+services:
+  # 1. The Database Container
+  db:
+    image: mysql:8.0
+    platform: linux/amd64
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: auth_api
+      MYSQL_USER: api_user
+      MYSQL_PASSWORD: apipassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # 2. The PHP Server Container
+  php:
+    build: .
+    platform: linux/amd64
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+    environment:                 
+      - JWT_SECRET=${JWT_SECRET} 
+
+volumes:
+  db_data:
