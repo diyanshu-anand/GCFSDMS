@@ -172,15 +172,7 @@ try
     );
 
 }
-catch(Throwable $e)
+catch (Throwable $e)
 {
-
-    logError(
-
-        "GET PRODUCT ERROR : " . $e->getMessage()
-
-    );
-
-    serverError();
-
+    die($e->getMessage());
 }
