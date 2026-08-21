@@ -111,9 +111,11 @@ if (
 
 $input = getJsonInput("POST");
 
-$search        = trim(sanitize(getParam($input, "search")));
-$status        = trim(getParam($input, "status"));
-$paymentStatus = trim(getParam($input, "payment_status"));
+// Modificaton by Harsh 
+// Safely handle missing parameters by defaulting to an empty string before trimming 
+$search        = trim(sanitize(getParam($input, "search") ?? ''));
+$status        = trim(getParam($input, "status") ?? '');
+$paymentStatus = trim(getParam($input, "payment_status") ?? '');
 $deliveryBoy   = intval(getParam($input, "delivery_boy"));
 
 
